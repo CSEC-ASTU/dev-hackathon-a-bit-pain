@@ -1,6 +1,5 @@
 package com.yaphet.devhackathonabitpain.models;
 
-import com.yaphet.devhackathonabitpain.utilities.enums.Scope;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +29,7 @@ public class Event {
     @NotNull
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
-            name="event_organizers",
+            name="app_user_roles",
             joinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name="app_role_id",referencedColumnName = "id")
     )
@@ -44,22 +42,12 @@ public class Event {
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt=LocalDateTime.now();
-    @ManyToMany(fetch=FetchType.LAZY)
-    @JoinTable(
-            name="event_attendees",
-            joinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="app_role_id",referencedColumnName = "id")
-    )
-    private Set<AppUser> attendees=new HashSet<>();
-    @NotNull
-    private Scope scope;
 
-    public Event(String title, String description, Set<AppUser> organizers, LocalDateTime eventDate, String eventLocation,Scope scope) {
+    public Event(String title, String description, Set<AppUser> organizers, LocalDateTime eventDate, String eventLocation) {
         this.title = title;
         this.description = description;
         this.organizers = organizers;
         this.eventDate = eventDate;
         this.eventLocation = eventLocation;
-        this.scope=scope;
     }
 }
