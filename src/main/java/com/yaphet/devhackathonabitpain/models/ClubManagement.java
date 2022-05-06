@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @Getter
@@ -17,10 +18,12 @@ public class ClubManagement{
     @SequenceGenerator(name = "club_sequence", sequenceName = "club_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "club_sequence")
     private Long id;
+    @NotNull
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(nullable = false,name="president_id",referencedColumnName = "id")
+    @JoinColumn(name="president_id",referencedColumnName = "id")
     private AppUser president;
+    @NotNull
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(nullable = false,name="vice_president_id",referencedColumnName = "id")
+    @JoinColumn(name="vice_president_id",referencedColumnName = "id")
     private AppUser vicePresident;
 }

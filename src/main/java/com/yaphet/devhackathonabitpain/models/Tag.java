@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @NoArgsConstructor
 @Getter
@@ -16,5 +17,6 @@ public class Tag {
     @SequenceGenerator(name = "tag_sequence", sequenceName = "tag_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tag_sequence")
     private Long id;
+    @NotBlank
     private String tagName;
 }

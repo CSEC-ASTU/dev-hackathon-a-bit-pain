@@ -40,24 +40,30 @@ public class AppUser {
     private LocalDate dob;
     @NotNull
     private Gender gender;
+    @NotNull
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="app_user_roles",
-            joinColumns = @JoinColumn(nullable = false,name="app_user_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(nullable = false,name="app_role_id",referencedColumnName = "id")
+            joinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="app_role_id",referencedColumnName = "id")
     )
     private Set<Role> roles=new HashSet<>();
+    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt=LocalDateTime.now();
+    @NotNull
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="division_members",
-            joinColumns = @JoinColumn(nullable = false,name="app_user_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(nullable = false,name="division_id",referencedColumnName = "id")
+            joinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="division_id",referencedColumnName = "id")
     )
     private Set<Division> divisions=new HashSet<>();
+    @NotNull
     private boolean deleted=false;
+    @NotNull
     private Boolean enabled = false;
+    @NotNull
     private Boolean locked = false;
 
     public AppUser(String firstName, String lastName, String email, String password, LocalDate dob) {

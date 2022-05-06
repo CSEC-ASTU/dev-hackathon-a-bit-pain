@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
@@ -18,18 +19,20 @@ public class ConfirmationToken {
     @SequenceGenerator(name = "token_sequence", sequenceName = "token_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "token_sequence")
     private Long id;
-    @Column(nullable = false)
+    @NotBlank
     private String token;
+    @NotNull
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt;
+    @NotNull
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE_TIME)
-    @Column(nullable = false)
     private LocalDateTime  expiresAt;
+    @NotNull
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime confirmedAt;
-
+    @NotNull
     @ManyToOne
-    @JoinColumn(nullable = false,name = "app_user_id")
+    @JoinColumn(name = "app_user_id")
     private AppUser appUser;
     public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt,AppUser appUser) {
         this.token = token;

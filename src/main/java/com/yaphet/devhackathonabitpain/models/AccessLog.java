@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -18,8 +20,11 @@ public class AccessLog {
     @SequenceGenerator(name = "log_sequence", sequenceName = "log_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_sequence")
     private Long id;
+    @NotBlank
     private String activity;
-    private LocalDateTime timeStamp;
+    @NotNull
+    private LocalDateTime timeStamp=LocalDateTime.now();
+    @NotNull
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="app_user_id",referencedColumnName = "id")
     private AppUser user;

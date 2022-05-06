@@ -30,8 +30,8 @@ public class Event {
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
             name="event_organizers",
-            joinColumns = @JoinColumn(nullable = false,name="event_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(nullable = false,name="app_user_id",referencedColumnName = "id")
+            joinColumns = @JoinColumn(name="event_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id")
     )
     private Set<AppUser> organizers=new HashSet<>();
     @NotNull
@@ -42,6 +42,7 @@ public class Event {
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt=LocalDateTime.now();
+    @NotNull
     private boolean deleted=false;
 
 }

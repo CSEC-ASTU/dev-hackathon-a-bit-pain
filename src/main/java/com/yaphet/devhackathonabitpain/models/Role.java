@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,10 +21,11 @@ public class Role {
     @SequenceGenerator(name="role_sequence",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="role_sequence")
     private Long id;
-    @NotBlank(message="Role name required")
+    @NotBlank
     private String roleName;
+    @NotBlank
     private String roleDescription;
-
+    @NotNull
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="app_role_privileges",
