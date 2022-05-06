@@ -22,9 +22,9 @@ public class Event {
     @SequenceGenerator(name = "event_sequence", sequenceName = "event_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "event_sequence")
     private Long id;
-    @NotBlank(message = "Title field required")
+    @NotBlank
     private String title;
-    @NotBlank(message = "Description field required")
+    @NotBlank
     private String description;
     @NotNull
     @ManyToMany(fetch=FetchType.LAZY)
@@ -44,11 +44,4 @@ public class Event {
     private LocalDateTime createdAt=LocalDateTime.now();
     private boolean deleted=false;
 
-    public Event(String title, String description, Set<AppUser> organizers, LocalDateTime eventDate, String eventLocation) {
-        this.title = title;
-        this.description = description;
-        this.organizers = organizers;
-        this.eventDate = eventDate;
-        this.eventLocation = eventLocation;
-    }
 }

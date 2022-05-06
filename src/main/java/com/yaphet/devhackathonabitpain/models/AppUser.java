@@ -1,5 +1,6 @@
 package com.yaphet.devhackathonabitpain.models;
 
+import com.yaphet.devhackathonabitpain.utilities.enums.Gender;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,23 +26,20 @@ public class AppUser {
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     private Long id;
-    @NotBlank(message = "First name field required")
-    @Pattern(regexp = "^[A-Za-z]*$", message = "Invalid first name format")
-    @Column(nullable = false)
+    @NotBlank
     private String firstName;
-    @NotBlank(message = "Last name field required")
-    @Pattern(regexp = "^[A-Za-z]*$", message = "Invalid last name format")
-    @Column(nullable = false)
+    @NotBlank
     private String lastName;
     private String userName;
-    @NotBlank(message = "Email field required")
+    @NotBlank
     @Email
     private String email;
-    @NotBlank(message = "Password field required")
-    @Column(nullable = false)
+    @NotBlank
     private String password;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dob;
+    @NotNull
+    private Gender gender;
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="app_user_roles",
@@ -50,6 +49,13 @@ public class AppUser {
     private Set<Role> roles=new HashSet<>();
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt=LocalDateTime.now();
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(
+            name="division_members",
+            joinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="division_id",referencedColumnName = "id")
+    )
+    private Set<Division> divisions=new HashSet<>();
     private boolean deleted=false;
     private Boolean enabled = false;
     private Boolean locked = false;
