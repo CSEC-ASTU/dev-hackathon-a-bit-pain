@@ -11,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @NoArgsConstructor
 @Entity
+@Table(name="app_privileges")
 public class Privilege {
     @Id
     @SequenceGenerator(name = "privilege_sequence",allocationSize = 1)
