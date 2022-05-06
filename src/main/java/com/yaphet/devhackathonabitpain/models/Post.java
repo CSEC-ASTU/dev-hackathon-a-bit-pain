@@ -35,4 +35,5 @@ public class Post {
             inverseJoinColumns = @JoinColumn(name="tag_id",referencedColumnName = "id")
     )
     private Set<Tag> tags=new HashSet<>();
+    private boolean deleted=false;
 }

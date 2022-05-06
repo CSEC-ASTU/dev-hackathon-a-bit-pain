@@ -17,7 +17,7 @@ public class Division {
     @SequenceGenerator(name = "division_sequence", sequenceName = "division_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "division_sequence")
     private Long id;
-    private String tagName;
+    private String divisionName;
     private String description;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="app_user_id",referencedColumnName = "id")

@@ -50,6 +50,7 @@ public class AppUser {
     private Set<Role> roles=new HashSet<>();
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt=LocalDateTime.now();
+    private boolean deleted=false;
     private Boolean enabled = false;
     private Boolean locked = false;
 

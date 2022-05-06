@@ -42,6 +42,7 @@ public class Event {
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt=LocalDateTime.now();
+    private boolean deleted=false;
 
     public Event(String title, String description, Set<AppUser> organizers, LocalDateTime eventDate, String eventLocation) {
         this.title = title;
