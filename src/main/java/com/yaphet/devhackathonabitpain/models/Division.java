@@ -19,7 +19,7 @@ public class Division {
     private Long id;
     private String tagName;
     private String description;
-    @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="app_user_id",referencedColumnName = "id")
     private AppUser head;
 }

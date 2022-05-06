@@ -41,7 +41,7 @@ public class AppUser {
     private String password;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dob;
-    @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="app_user_roles",
             joinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id"),

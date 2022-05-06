@@ -24,7 +24,7 @@ public class Role {
     private String roleName;
     private String roleDescription;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="app_role_privileges",
             joinColumns = @JoinColumn(name="app_role_id",referencedColumnName = "id"),

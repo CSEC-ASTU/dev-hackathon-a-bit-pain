@@ -28,7 +28,7 @@ public class Post {
     private AppUser createdBy;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt=LocalDateTime.now();
-    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @OneToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="post_tags",
             joinColumns = @JoinColumn(name="post_id",referencedColumnName = "id"),
