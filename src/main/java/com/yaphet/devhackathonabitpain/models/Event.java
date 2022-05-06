@@ -30,8 +30,8 @@ public class Event {
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
             name="event_organizers",
-            joinColumns = @JoinColumn(name="event_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id")
+            joinColumns = @JoinColumn(nullable = false,name="event_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(nullable = false,name="app_user_id",referencedColumnName = "id")
     )
     private Set<AppUser> organizers=new HashSet<>();
     @NotNull

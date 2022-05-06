@@ -43,8 +43,8 @@ public class AppUser {
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="app_user_roles",
-            joinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="app_role_id",referencedColumnName = "id")
+            joinColumns = @JoinColumn(nullable = false,name="app_user_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(nullable = false,name="app_role_id",referencedColumnName = "id")
     )
     private Set<Role> roles=new HashSet<>();
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -52,8 +52,8 @@ public class AppUser {
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="division_members",
-            joinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="division_id",referencedColumnName = "id")
+            joinColumns = @JoinColumn(nullable = false,name="app_user_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(nullable = false,name="division_id",referencedColumnName = "id")
     )
     private Set<Division> divisions=new HashSet<>();
     private boolean deleted=false;

@@ -31,8 +31,8 @@ public class Post {
     @OneToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="post_tags",
-            joinColumns = @JoinColumn(name="post_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="tag_id",referencedColumnName = "id")
+            joinColumns = @JoinColumn(nullable = false,name="post_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(nullable = false,name="tag_id",referencedColumnName = "id")
     )
     private Set<Tag> tags=new HashSet<>();
     private boolean deleted=false;

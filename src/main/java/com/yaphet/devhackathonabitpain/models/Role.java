@@ -27,8 +27,8 @@ public class Role {
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="app_role_privileges",
-            joinColumns = @JoinColumn(name="app_role_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="app_privilege_id",referencedColumnName = "id")
+            joinColumns = @JoinColumn(nullable = false,name="app_role_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(nullable = false,name="app_privilege_id",referencedColumnName = "id")
     )
     private Set<Privilege> privileges=new HashSet<>();
 

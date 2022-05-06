@@ -18,9 +18,9 @@ public class ClubManagement{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "club_sequence")
     private Long id;
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="president_id",referencedColumnName = "id")
+    @JoinColumn(nullable = false,name="president_id",referencedColumnName = "id")
     private AppUser president;
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="vice_president_id",referencedColumnName = "id")
+    @JoinColumn(nullable = false,name="vice_president_id",referencedColumnName = "id")
     private AppUser vicePresident;
 }

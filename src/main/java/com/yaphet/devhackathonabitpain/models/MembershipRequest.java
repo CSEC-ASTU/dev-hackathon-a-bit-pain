@@ -3,8 +3,10 @@ package com.yaphet.devhackathonabitpain.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,8 +24,10 @@ public class MembershipRequest {
     @ManyToOne
     @JoinColumn(nullable = false,name = "app_user_id")
     private AppUser appUser;
-    @ManyToMany(fetch=FetchType.EAGER)
+    @ManyToMany(fetch=FetchType.LAZY)
     @JoinColumn(nullable = false,name = "division_id")
     private Set<Division> divisions=new HashSet<>();
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime requestDate=LocalDateTime.now();
 
 }
