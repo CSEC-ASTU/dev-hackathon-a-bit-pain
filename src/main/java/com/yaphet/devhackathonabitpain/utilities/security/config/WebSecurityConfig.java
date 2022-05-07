@@ -10,11 +10,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @AllArgsConstructor
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+    private final AuthenticationSuccessHandler authenticationSuccessHandler;
     private final AppUserService appUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
@@ -26,8 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()
-                .formLogin().permitAll()
-                .defaultSuccessUrl("/user/home")
+                .formLogin().successHandler(authenticationSuccessHandler)
+                .permitAll()
+//                .defaultSuccessUrl("/user/home")
                 .and().logout().permitAll()
                 ;
     }

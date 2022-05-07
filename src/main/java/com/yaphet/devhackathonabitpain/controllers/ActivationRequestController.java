@@ -37,6 +37,7 @@ public class ActivationRequestController {
     @GetMapping("/decline/{id}")
     public String decline(@PathVariable("id") Long id){
         activationRequestService.decline(id);
+
         return "redirect:/role/request/";
     }
 

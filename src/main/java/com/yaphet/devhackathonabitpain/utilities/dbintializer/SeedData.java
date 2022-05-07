@@ -53,6 +53,7 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
         adminAppUser.setPassword("admin");
         adminAppUser.setGender(Gender.MALE);
         adminAppUser.setDivisions(new HashSet<>(Set.of(division)));
+        adminAppUser.setLocked(false);
         appUserService.save(adminAppUser);
         //set division head
         division.setHead(adminAppUser);

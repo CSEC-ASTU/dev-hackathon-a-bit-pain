@@ -37,12 +37,14 @@ public class ActivationRequestService {
         return requestList;
     }
     public void activate(Long id){
+        //TODO: check if user is already activated
         AppUser appUser=appUserService.getAppUser(id);
         Status status=Status.ACCEPTED;
         appUserService.unlockAppUser(appUser.getEmail());
         changeRequestStatus(appUser,status);
     }
     public void decline(Long id){
+        //TODO: check if user is already decline
         AppUser appUser=appUserService.getAppUser(id);
         Status status=Status.DECLINED;
         //TODO: disable user account
