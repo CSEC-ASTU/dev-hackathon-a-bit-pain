@@ -23,7 +23,6 @@ public class Division {
     private String divisionName;
     @NotBlank
     private String description;
-    @NotNull
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="app_user_id",referencedColumnName = "id")
     private AppUser head;

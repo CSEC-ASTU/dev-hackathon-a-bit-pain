@@ -26,7 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()
-                .formLogin().defaultSuccessUrl("/user/home");
+                .formLogin().permitAll()
+                .defaultSuccessUrl("/user/home")
+                .and().logout().permitAll()
+                ;
     }
     @Override
     public void configure(AuthenticationManagerBuilder auth){

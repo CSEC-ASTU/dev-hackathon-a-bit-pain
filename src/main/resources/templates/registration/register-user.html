@@ -18,6 +18,13 @@
         <p class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errorClass="error" th:errors="*{lastName}"/>
     </div>
         <div class="mb-3">
+            <label for="female" class="form-label">Female</label>
+            <input type="text" th:field="*{gender}" name="gender" vaule="female" class="form-control" id="female">
+            <label for="male" class="form-label">Male</label>
+            <input type="text" th:field="*{gender}" name="gender" value="male" class="form-control" id="male">
+            <p class="alert alert-warning" th:if="${#fields.hasErrors('gender')}" th:errorClass="error" th:errors="*{gender}"/>
+        </div>
+        <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <input type="email" th:field="*{email}" name="email" class="form-control" id="email">
             <p class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errorClass="error" th:errors="*{email}"/>

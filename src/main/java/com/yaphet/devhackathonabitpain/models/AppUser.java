@@ -10,7 +10,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -64,14 +63,16 @@ public class AppUser {
     @NotNull
     private Boolean enabled = false;
     @NotNull
-    private Boolean locked = false;
+    private Boolean locked = true;
 
-    public AppUser(String firstName, String lastName, String email, String password, LocalDate dob) {
+    public AppUser(String firstName, String lastName, String email, String password, LocalDate dob,Gender gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.dob = dob;
+        this.userName=email;
+        this.gender=gender;
     }
 
     public String getUserName() {
