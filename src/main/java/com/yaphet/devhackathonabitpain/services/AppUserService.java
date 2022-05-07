@@ -103,10 +103,6 @@ public class AppUserService implements UserDetailsService {
     }
 
     public String signUpUser(AppUser appUser){
-
-        //hash password
-        String encodedPassword=passwordEncoder.encode(appUser.getPassword());
-        appUser.setPassword(encodedPassword);
         save(appUser);
         String token= UUID.randomUUID().toString();
         ConfirmationToken confirmationToken=new ConfirmationToken(token,

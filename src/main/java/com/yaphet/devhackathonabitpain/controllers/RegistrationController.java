@@ -48,6 +48,7 @@ public class RegistrationController {
         if(result.hasErrors()){
             return "registration/register-user";
         }
+        appUser.setUserName(appUser.getEmail());
         appUserRegistrationService.register(appUser);
         return "redirect:/login";
     }
