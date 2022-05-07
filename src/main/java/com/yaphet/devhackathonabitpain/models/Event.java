@@ -27,7 +27,7 @@ public class Event {
     private String title;
     @NotBlank
     private String description;
-    @NotNull
+//    @NotNull
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
             name="event_organizers",

@@ -28,7 +28,6 @@ public class ConfirmationToken {
     @NotNull
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime  expiresAt;
-    @NotNull
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime confirmedAt;
     @NotNull

@@ -21,7 +21,7 @@ public class Scoreboard {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attachment_sequence")
     private Long id;
     private String description;
-    @NotNull
+//    @NotNull
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
             name="scoreboard_attachments",

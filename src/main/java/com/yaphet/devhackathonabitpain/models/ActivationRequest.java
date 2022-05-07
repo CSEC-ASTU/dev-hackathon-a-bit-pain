@@ -14,13 +14,13 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name="activation_request")
+@Table(name="activation_requests")
 public class ActivationRequest {
     @Id
     @SequenceGenerator(name = "activation_sequence", sequenceName = "activation_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activation_sequence")
     private Long id;
-    @NotNull
+//    @NotNull
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="app_user_id",referencedColumnName = "id")
     private AppUser appUser;

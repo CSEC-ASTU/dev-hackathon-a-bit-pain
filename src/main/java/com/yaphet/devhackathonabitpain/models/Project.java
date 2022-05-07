@@ -24,7 +24,7 @@ public class Project {
     private Long id;
     @NotBlank
     private String title;
-    @NotNull
+//    @NotNull
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
             name="project_authors",

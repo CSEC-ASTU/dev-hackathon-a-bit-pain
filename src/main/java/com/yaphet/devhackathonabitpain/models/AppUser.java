@@ -35,12 +35,9 @@ public class AppUser {
     private String email;
     @NotBlank
     private String password;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate dob;
-    @NotNull
+//    @NotNull
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @NotNull
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="app_user_roles",
@@ -51,7 +48,7 @@ public class AppUser {
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt=LocalDateTime.now();
-    @NotNull
+//    @NotNull
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="division_members",
@@ -66,12 +63,11 @@ public class AppUser {
     @NotNull
     private Boolean locked = true;
 
-    public AppUser(String firstName, String lastName, String email, String password, LocalDate dob,Gender gender) {
+    public AppUser(String firstName, String lastName, String email, String password,Gender gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.dob = dob;
         this.userName=email;
         this.gender=gender;
     }

@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -22,9 +21,9 @@ public class AccessLog {
     private Long id;
     @NotBlank
     private String activity;
-    @NotNull
+
     private LocalDateTime timeStamp=LocalDateTime.now();
-    @NotNull
+//    @NotNull
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="app_user_id",referencedColumnName = "id")
     private AppUser user;

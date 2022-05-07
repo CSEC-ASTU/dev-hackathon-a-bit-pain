@@ -25,7 +25,7 @@ public class Role {
     private String roleName;
     @NotBlank
     private String roleDescription;
-    @NotNull
+//    @NotNull
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name="app_role_privileges",

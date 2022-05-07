@@ -70,11 +70,11 @@ public class AppUserController {
         AppUser appUser=appUserService.getAppUser(id);
         redirectAttributes.addAttribute("id",id);
         if(result.hasErrors()){
-            return "redirect: user/assign-role/{id}";
+            return "redirect:/user/assign-role/{id}";
         }
         appUser.setRoles(new HashSet<>(selectedRoles.getSelectedRoles()));
         appUserService.updateAppUserRole(appUser);
-        return "redirect: user/detail/{id}";
+        return "redirect: /user/detail/{id}";
     }
 
 

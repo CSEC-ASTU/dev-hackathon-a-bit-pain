@@ -21,7 +21,13 @@
            Email: <p  th:text="${appUser.email}"></p>
     </span>
     <span class="text-info">
-           Data of Birth: <p  th:text="${appUser.dob}"></p>
+           Data of Birth: <p  th:text="${appUser.gender}"></p>
+    </span>
+    <span class="text-info">
+        <p>Divisions</p>
+    <ul>
+        <li th:each="division:${appUser.divisions}" th:text="${division.divisionName}"></li>
+    </ul>
     </span>
     <span class="text-info">
            Create At: <p  th:text="${appUser.createdAt}"></p>

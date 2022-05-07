@@ -23,7 +23,7 @@ public class MembershipRequest {
     @SequenceGenerator(name = "club_sequence", sequenceName = "club_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "club_sequence")
     private Long id;
-    @NotNull
+//    @NotNull
     @ManyToOne
     @JoinColumn(name = "app_user_id")
     private AppUser appUser;
