@@ -63,6 +63,7 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
         roles.add(new Role("SUPER_ADMIN","Global access"));
         roles.add(new Role("ADMIN","Global access"));
         roles.add(new Role("USER","Limited Access"));
+        roles.add(new Role("INACTIVE_USER","Limited Access"));
         for(Role role:roles){
             roleService.createRole(role);
         }

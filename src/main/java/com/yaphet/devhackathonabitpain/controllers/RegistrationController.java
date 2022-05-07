@@ -23,17 +23,17 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("")
 public class RegistrationController {
 
     private final RegistrationService appUserRegistrationService;
     private final DivisionService divisionService;
 
     @GetMapping
-    public String index(){
+    public String landingPage(){
         return "landing-page";
     }
-    @GetMapping("account/register")
+
+    @GetMapping("register")
     public String registrationForm(Model model){
         AppUser appUser=new AppUser();
         List<Gender> statusList= Arrays.asList(Gender.values());
@@ -43,7 +43,7 @@ public class RegistrationController {
         model.addAttribute("divisionList",divisionList);
         return "registration/register-user";
     }
-    @PostMapping("account/register")
+    @PostMapping("register")
     public String register(@Valid @ModelAttribute("appUser") AppUser appUser,BindingResult result){
         if(result.hasErrors()){
             return "registration/register-user";
@@ -52,7 +52,7 @@ public class RegistrationController {
         appUserRegistrationService.register(appUser);
         return "redirect:/login";
     }
-    @GetMapping("account/confirm")
+    @GetMapping("confirm")
     public String confirm(@RequestParam("token") String token){
         appUserRegistrationService.confirmToken(token);
         return "registration/email-verified";

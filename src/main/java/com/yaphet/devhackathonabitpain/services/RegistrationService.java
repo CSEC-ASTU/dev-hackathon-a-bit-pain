@@ -31,8 +31,8 @@ public class RegistrationService {
         }
         String token= appUserService.signUpUser(appUser);
         //assign default role to new user
-        appUserRoleService.assignRole(appUser.getEmail(),"USER");
-        String link="http://10.240.73.32:8080/account/confirm?token="+token;
+        appUserRoleService.assignRole(appUser.getEmail(),"INACTIVE_USER");
+        String link="http://10.240.73.32:8080/confirm?token="+token;
         emailSender.send(appUser.getEmail(),emailBuilder.buildEmail(appUser.getFirstName()+" "+appUser.getLastName(),link));
         activationRequestService.create(appUser);
     }

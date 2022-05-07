@@ -24,9 +24,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String email=((AppUserDetails)authentication.getPrincipal()).getUsername();
         AppUser appUser=appUserService.getAppUserByEmail(email);
         if(appUser.getLocked()){
-            response.sendRedirect("user/pending");
+            response.sendRedirect("account/pending");
         }else{
-            response.sendRedirect("user/home");
+            response.sendRedirect("account/home");
         }
 
 

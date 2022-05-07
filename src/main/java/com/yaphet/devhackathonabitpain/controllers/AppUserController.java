@@ -6,6 +6,7 @@ import com.yaphet.devhackathonabitpain.services.AppUserService;
 import com.yaphet.devhackathonabitpain.services.RoleService;
 import com.yaphet.devhackathonabitpain.utilities.SelectedRole;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,8 @@ public class AppUserController {
     private final AppUserService appUserService;
     private final RoleService roleService;
 
+
+    @PreAuthorize("hasRole('USER')")
     @GetMapping
     public String getAppUsers(Model model){
         List<AppUser> appUserList=appUserService.getAppUsers();
@@ -76,7 +79,6 @@ public class AppUserController {
         appUserService.updateAppUserRole(appUser);
         return "redirect:/user/detail/{id}";
     }
-
 
 
 }
