@@ -19,7 +19,7 @@ public class ActivationRequestService {
     private final EmailService emailSender;
     private final EmailBuilder emailBuilder;
 
-    public void save(AppUser appUser){
+    public void create(AppUser appUser){
         if(appUser!=null){
             ActivationRequest activationRequest=new ActivationRequest();
             activationRequest.setAppUser(appUser);

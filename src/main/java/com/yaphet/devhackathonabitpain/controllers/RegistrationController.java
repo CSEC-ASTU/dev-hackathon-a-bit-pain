@@ -2,6 +2,7 @@ package com.yaphet.devhackathonabitpain.controllers;
 
 import com.yaphet.devhackathonabitpain.models.AppUser;
 import com.yaphet.devhackathonabitpain.models.Division;
+import com.yaphet.devhackathonabitpain.services.ActivationRequestService;
 import com.yaphet.devhackathonabitpain.services.DivisionService;
 import com.yaphet.devhackathonabitpain.services.RegistrationService;
 import com.yaphet.devhackathonabitpain.utilities.SelectPrivilege;
@@ -40,7 +41,6 @@ public class RegistrationController {
         model.addAttribute("appUser",appUser);
         model.addAttribute("genderList",statusList);
         model.addAttribute("divisionList",divisionList);
-//        model.addAttribute("selectedDivision",new SelectedDivision(divisionList));
         return "registration/register-user";
     }
     @PostMapping("account/register")

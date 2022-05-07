@@ -22,6 +22,8 @@ public class RegistrationService {
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailService emailSender;
     private final EmailBuilder emailBuilder;
+    private ActivationRequestService activationRequestService;
+
     public void register(AppUser appUser) {
         boolean isEmailValid=emailValidator.test(appUser.getEmail());
         if(!isEmailValid){
@@ -32,6 +34,7 @@ public class RegistrationService {
         appUserRoleService.assignRole(appUser.getEmail(),"USER");
         String link="http://10.240.73.32:8080/account/confirm?token="+token;
         emailSender.send(appUser.getEmail(),emailBuilder.buildEmail(appUser.getFirstName()+" "+appUser.getLastName(),link));
+        activationRequestService.create(appUser);
     }
     @Transactional
     public void confirmToken(@RequestParam("token") String token){
