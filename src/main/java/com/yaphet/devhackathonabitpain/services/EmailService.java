@@ -1,5 +1,6 @@
-package com.yaphet.devhackathonabitpain.utilities.email;
+package com.yaphet.devhackathonabitpain.services;
 
+import com.yaphet.devhackathonabitpain.utilities.email.EmailSender;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +16,7 @@ import javax.mail.internet.MimeMessage;
 
 @AllArgsConstructor
 @Service
-
-public class EmailService implements EmailSender{
+public class EmailService implements EmailSender {
     private final JavaMailSender javaMailSender;
     private final static Logger LOGGER= LoggerFactory.getLogger(EmailService.class);
     @Override

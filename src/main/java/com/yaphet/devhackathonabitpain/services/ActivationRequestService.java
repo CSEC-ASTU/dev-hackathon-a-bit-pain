@@ -3,6 +3,7 @@ package com.yaphet.devhackathonabitpain.services;
 import com.yaphet.devhackathonabitpain.models.ActivationRequest;
 import com.yaphet.devhackathonabitpain.models.AppUser;
 import com.yaphet.devhackathonabitpain.repositories.ActivationRequestRepository;
+import com.yaphet.devhackathonabitpain.utilities.email.EmailBuilder;
 import com.yaphet.devhackathonabitpain.utilities.enums.Status;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class ActivationRequestService {
 
     private final ActivationRequestRepository activationRequestRepository;
     private final AppUserService appUserService;
+    private final EmailService emailSender;
+    private final EmailBuilder emailBuilder;
 
     public void save(AppUser appUser){
         if(appUser!=null){
@@ -37,11 +40,14 @@ public class ActivationRequestService {
         AppUser appUser=appUserService.getAppUserByEmail(email);
         appUserService.unlockAppUser(email);
         activationRequestRepository.updateStatus(appUser.getId(),Status.ACCEPTED);
+        emailSender.send(appUser.getEmail(),emailBuilder.buildEmail(appUser.getFirstName()+" "+appUser.getLastName(),Status.ACCEPTED));
     }
     public void decline(String email){
         AppUser appUser=appUserService.getAppUserByEmail(email);
         activationRequestRepository.updateStatus(appUser.getId(),Status.DECLINED);
+        emailSender.send(appUser.getEmail(),emailBuilder.buildEmail(appUser.getFirstName()+" "+appUser.getLastName(),Status.ACCEPTED));
     }
+
 
 
 
