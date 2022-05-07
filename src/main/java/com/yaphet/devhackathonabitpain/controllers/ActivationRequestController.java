@@ -29,15 +29,17 @@ public class ActivationRequestController {
         model.addAttribute("requestList",requestList);
     }
     @GetMapping("/activate/{id}")
-    public String activate(@PathVariable("id") Long id){
-       activationRequestService.activate(id);
+    public String activate(@PathVariable("id") Long id,Model model){
+       if(activationRequestService.activate(id)){
+       }
        return "redirect:/user/request/";
 
     }
     @GetMapping("/decline/{id}")
     public String decline(@PathVariable("id") Long id){
-        activationRequestService.decline(id);
-
+        if(activationRequestService.decline(id)){
+            //TODO: show error and success message
+        }
         return "redirect:/role/request/";
     }
 

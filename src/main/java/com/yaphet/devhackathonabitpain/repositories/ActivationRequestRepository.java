@@ -21,4 +21,7 @@ public interface ActivationRequestRepository extends JpaRepository<ActivationReq
     @Modifying
     @Query("UPDATE ActivationRequest a SET a.status=?2 WHERE a.appUser.id=?1")
     void updateStatus(Long id,Status status);
+
+    @Query(value = "SELECT a.id,a.appUser,a.requestedAt,a.status FROM  ActivationRequest a WHERE a.appUser.id=?1 AND a.status=?2")
+   List<ActivationRequest> userRequest(Long id,Status status);
 }
