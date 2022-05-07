@@ -28,13 +28,16 @@ public class ActivationRequestController {
         List<ActivationRequest> requestList=activationRequestService.findByStatus(status);
         model.addAttribute("requestList",requestList);
     }
-    @PostMapping("/activate")
-    public void activate(@RequestParam("email") String email){
-       activationRequestService.activate(email);
+    @GetMapping("/activate/{id}")
+    public String activate(@PathVariable("id") Long id){
+       activationRequestService.activate(id);
+       return "redirect:/user/request/";
+
     }
-    @PostMapping("/decline")
-    public void decline(@RequestParam("email") String email){
-        activationRequestService.decline(email);
+    @GetMapping("/decline/{id}")
+    public String decline(@PathVariable("id") Long id){
+        activationRequestService.decline(id);
+        return "redirect:/role/request/";
     }
 
 

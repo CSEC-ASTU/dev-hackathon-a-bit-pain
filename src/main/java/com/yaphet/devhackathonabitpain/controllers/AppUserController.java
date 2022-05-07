@@ -74,7 +74,7 @@ public class AppUserController {
         }
         appUser.setRoles(new HashSet<>(selectedRoles.getSelectedRoles()));
         appUserService.updateAppUserRole(appUser);
-        return "redirect: /user/detail/{id}";
+        return "redirect:/user/detail/{id}";
     }
 
 

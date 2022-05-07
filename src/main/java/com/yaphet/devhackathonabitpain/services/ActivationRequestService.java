@@ -36,16 +36,21 @@ public class ActivationRequestService {
                 ()->new IllegalStateException(String.format("activation request not found with status=%",status)));
         return requestList;
     }
-    public void activate(String email){
-        AppUser appUser=appUserService.getAppUserByEmail(email);
-        appUserService.unlockAppUser(email);
-        activationRequestRepository.updateStatus(appUser.getId(),Status.ACCEPTED);
-        emailSender.send(appUser.getEmail(),emailBuilder.buildEmail(appUser.getFirstName()+" "+appUser.getLastName(),Status.ACCEPTED));
+    public void activate(Long id){
+        AppUser appUser=appUserService.getAppUser(id);
+        Status status=Status.ACCEPTED;
+        appUserService.unlockAppUser(appUser.getEmail());
+        changeRequestStatus(appUser,status);
     }
-    public void decline(String email){
-        AppUser appUser=appUserService.getAppUserByEmail(email);
-        activationRequestRepository.updateStatus(appUser.getId(),Status.DECLINED);
-        emailSender.send(appUser.getEmail(),emailBuilder.buildEmail(appUser.getFirstName()+" "+appUser.getLastName(),Status.ACCEPTED));
+    public void decline(Long id){
+        AppUser appUser=appUserService.getAppUser(id);
+        Status status=Status.DECLINED;
+        //TODO: disable user account
+        changeRequestStatus(appUser,status);
+    }
+    private void changeRequestStatus(AppUser appUser,Status status){
+        activationRequestRepository.updateStatus(appUser.getId(),status);
+        emailSender.send(appUser.getEmail(),emailBuilder.buildEmail(appUser.getFirstName()+" "+appUser.getLastName(),status));
     }
 
 

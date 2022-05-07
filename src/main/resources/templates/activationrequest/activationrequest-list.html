@@ -17,9 +17,13 @@
         </thead>
         <tbody>
         <tr th:each="request:${requestList}">
-            <td th:text="${request.appUser.firstName}"></td>
+            <td th:text="${request.appUser.firstName+' '+request.appUser.lastName}"></td>
             <td th:text="${request.requestedAt}"></td>
             <td th:text="${request.status}"></td>
+            <td>
+                <a th:href="@{/user/request/activate/{id}(id=${request.appUser.id})}" class="btn btn-primary">Accept</a>
+                <a th:href="@{/user/request/decline/{id}(id=${request.appUser.id})}" class="btn btn-primary">Decline</a>
+            </td>
         </tr>
         </tbody>
     </table>
