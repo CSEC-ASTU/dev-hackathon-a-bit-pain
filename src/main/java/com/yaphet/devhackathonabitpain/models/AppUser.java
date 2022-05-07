@@ -38,6 +38,7 @@ public class AppUser {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dob;
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     @NotNull
     @ManyToMany(fetch=FetchType.EAGER)

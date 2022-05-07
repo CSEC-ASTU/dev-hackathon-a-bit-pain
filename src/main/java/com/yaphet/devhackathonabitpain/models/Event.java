@@ -1,5 +1,6 @@
 package com.yaphet.devhackathonabitpain.models;
 
+import com.yaphet.devhackathonabitpain.utilities.enums.Scope;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,6 +40,9 @@ public class Event {
     private LocalDateTime eventDate;
     @NotNull
     private String eventLocation;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Scope scope;
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt=LocalDateTime.now();

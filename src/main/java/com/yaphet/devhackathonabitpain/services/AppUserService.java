@@ -114,6 +114,7 @@ public class AppUserService implements UserDetailsService {
                 appUser
         );
         confirmationTokenService.saveConfirmationToken(confirmationToken);
+
         return token;
     }
     public void enableAppUser(String email) {
@@ -122,6 +123,13 @@ public class AppUserService implements UserDetailsService {
             throw new IllegalStateException("email doesn't exist");
         }
         appUserRepository.enableAppUser(email);
+    }
+    public void unlockAppUser(String email){
+        boolean emailExists=appUserRepository.findByEmail(email).isPresent();
+        if(!emailExists){
+            throw new IllegalStateException("email doesn't exist");
+        }
+        appUserRepository.unlockAppUser(email);
     }
 
 

@@ -1,5 +1,6 @@
 package com.yaphet.devhackathonabitpain.controllers;
 
+import com.yaphet.devhackathonabitpain.models.ActivationRequest;
 import com.yaphet.devhackathonabitpain.services.RegistrationService;
 import com.yaphet.devhackathonabitpain.models.AppUser;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import javax.validation.Valid;
 public class RegistrationController {
 
     private final RegistrationService appUserRegistrationService;
+    private final ActivationRequest activationRequest;
 
     @GetMapping
     public String index(){

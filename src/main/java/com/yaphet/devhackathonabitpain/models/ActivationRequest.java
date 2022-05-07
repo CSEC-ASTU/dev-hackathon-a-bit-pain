@@ -28,5 +28,6 @@ public class ActivationRequest {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime requestedAt=LocalDateTime.now();
     @NotNull
-    private Status status;
+    @Enumerated(EnumType.STRING)
+    private Status status=Status.PENDING;
 }
