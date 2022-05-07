@@ -40,7 +40,7 @@ public class ActivationRequestController {
         if(activationRequestService.decline(id)){
             //TODO: show error and success message
         }
-        return "redirect:/role/request/";
+        return "redirect:/user/request/";
     }
 
 

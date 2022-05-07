@@ -36,9 +36,8 @@ public class ActivationRequestService {
     }
 
     public List<ActivationRequest> findByStatus(Status status) {
-        List<ActivationRequest> requestList=activationRequestRepository.findByStatus(status).orElseThrow(
-                ()->new IllegalStateException(String.format("activation request not found with status=%",status)));
-        return requestList;
+        return activationRequestRepository.findByStatus(status).orElseThrow(
+                ()->new IllegalStateException(String.format("activation request not found with status=%s",status)));
     }
     public boolean activate(Long id){
         AppUser appUser=appUserService.getAppUser(id);
