@@ -40,6 +40,13 @@ public class Event {
     private LocalDateTime eventDate;
     @NotNull
     private String eventLocation;
+    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(
+            name="event_attendees",
+            joinColumns = @JoinColumn(name="event_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id")
+    )
+    private Set<AppUser> attendees=new HashSet<>();
     @NotNull
     @Enumerated(EnumType.STRING)
     private Scope scope;

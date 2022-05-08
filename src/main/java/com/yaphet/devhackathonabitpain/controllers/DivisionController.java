@@ -30,13 +30,13 @@ public class DivisionController {
     public String getDivision(@PathVariable("id") Long id,Model model){
         Division division=divisionService.getDivision(id);
         model.addAttribute("division",division);
-        return "division/detail";
+        return "division/division-detail";
     }
     @GetMapping("/create")
     public String  createDivisionForm(Model model){
         Division division=new Division();
         model.addAttribute("division",division);
-        return "divison/create";
+        return "divison/division-reate";
     }
     @PostMapping("/create")
     public String createDivision(@Valid @ModelAttribute Division division, BindingResult result){
@@ -44,7 +44,7 @@ public class DivisionController {
             return "redirect:division/create";
         }
         divisionService.create(division);
-        return "redirect:division/add-head";
+        return "redirect:/division/add-head";
     }
     @GetMapping("/add-head/{id}")
     public String addHeadForm(@PathVariable("id") Long id,Model model){
@@ -58,7 +58,7 @@ public class DivisionController {
     public String addHead(@Valid @ModelAttribute Division division, BindingResult result, RedirectAttributes redirectAttributes){
         redirectAttributes.addAttribute("id",division.getId());
         if(result.hasErrors()){
-            return "division/add-head/{id}";
+            return "redirect:/division/add-head/{id}";
         }
         divisionService.update(division);
         return "redirect:/division";
