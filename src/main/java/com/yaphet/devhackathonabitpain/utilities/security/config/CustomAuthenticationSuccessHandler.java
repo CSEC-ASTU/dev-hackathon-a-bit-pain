@@ -26,7 +26,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         if(appUser.getLocked()){
             response.sendRedirect("account/pending");
         }else{
-            response.sendRedirect("account/home");
+            response.sendRedirect("user/");
         }
 
 
