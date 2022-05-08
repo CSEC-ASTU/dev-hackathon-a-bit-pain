@@ -1,12 +1,9 @@
 package com.yaphet.devhackathonabitpain.controllers;
 
 import com.yaphet.devhackathonabitpain.models.AppUser;
-import com.yaphet.devhackathonabitpain.models.Division;
 import com.yaphet.devhackathonabitpain.models.Event;
-import com.yaphet.devhackathonabitpain.models.Tag;
 import com.yaphet.devhackathonabitpain.services.AppUserService;
 import com.yaphet.devhackathonabitpain.services.EventService;
-import com.yaphet.devhackathonabitpain.services.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +20,6 @@ import java.util.List;
 public class EventController {
     private final EventService eventService;
     private final AppUserService appUserService;
-    private final TagService tagService;
 
     @GetMapping
     public String getEvents(Model model){
@@ -41,10 +37,8 @@ public class EventController {
     public String  createEventForm(Model model){
         Event event=new Event();
         List<AppUser> appUserList=appUserService.getAppUsers();
-        List<Tag> tagList=tagService.getAllTags();
         model.addAttribute("event",event);
         model.addAttribute("appUserList",appUserList);
-        model.addAttribute("tagList",tagList);
         return "event/event-create";
     }
     @PostMapping("/create")
