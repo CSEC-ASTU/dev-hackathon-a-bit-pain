@@ -19,4 +19,5 @@ public class Tag {
     private Long id;
     @NotBlank
     private String tagName;
+
 }

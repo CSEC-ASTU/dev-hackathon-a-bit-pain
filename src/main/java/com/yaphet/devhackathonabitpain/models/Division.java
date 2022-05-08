@@ -36,4 +36,6 @@ public class Division {
             inverseJoinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id")
     )
     private Set<AppUser> members=new HashSet<>();
+    @NotNull
+    private boolean deleted=false;
 }

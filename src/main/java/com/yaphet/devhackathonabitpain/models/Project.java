@@ -43,4 +43,7 @@ public class Project {
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createAt=LocalDateTime.now();
+    @NotNull
+    private boolean deleted=false;
+
 }
