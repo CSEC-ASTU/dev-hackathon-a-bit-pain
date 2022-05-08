@@ -7,6 +7,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -27,4 +29,11 @@ public class Division {
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="app_user_id",referencedColumnName = "id")
     private AppUser head;
+    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(
+            name="division_members",
+            joinColumns = @JoinColumn(name="division_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id")
+    )
+    private Set<AppUser> members=new HashSet<>();
 }

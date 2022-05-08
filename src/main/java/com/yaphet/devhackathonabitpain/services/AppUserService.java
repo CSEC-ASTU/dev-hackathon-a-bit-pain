@@ -127,6 +127,4 @@ public class AppUserService implements UserDetailsService {
         }
         appUserRepository.unlockAppUser(email);
     }
-
-
 }

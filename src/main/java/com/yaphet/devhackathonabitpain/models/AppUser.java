@@ -49,7 +49,7 @@ public class AppUser {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt=LocalDateTime.now();
 //    @NotNull
-    @ManyToMany(fetch=FetchType.EAGER)
+    @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
             name="division_members",
             joinColumns = @JoinColumn(name="app_user_id",referencedColumnName = "id"),
