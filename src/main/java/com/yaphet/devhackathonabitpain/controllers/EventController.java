@@ -4,6 +4,8 @@ import com.yaphet.devhackathonabitpain.models.AppUser;
 import com.yaphet.devhackathonabitpain.models.Event;
 import com.yaphet.devhackathonabitpain.services.AppUserService;
 import com.yaphet.devhackathonabitpain.services.EventService;
+import com.yaphet.devhackathonabitpain.utilities.enums.Gender;
+import com.yaphet.devhackathonabitpain.utilities.enums.Scope;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -37,8 +40,10 @@ public class EventController {
     public String  createEventForm(Model model){
         Event event=new Event();
         List<AppUser> appUserList=appUserService.getAppUsers();
+        List<Scope> scopeList= Arrays.asList(Scope.values());
         model.addAttribute("event",event);
         model.addAttribute("appUserList",appUserList);
+        model.addAttribute("scopeList",scopeList);
         return "event/event-create";
     }
     @PostMapping("/create")
@@ -52,7 +57,8 @@ public class EventController {
     @GetMapping("/invite-members/{id}")
     public String inviteMembersForm(@PathVariable("id") Long id,Model model){
         List<AppUser> appUserList=appUserService.getAppUsers();
-        model.addAttribute("id",id);
+        Event event=eventService.getEvent(id);
+        model.addAttribute("event",event);
         model.addAttribute("appUserList",appUserList);
         return "event/invite-members";
     }
