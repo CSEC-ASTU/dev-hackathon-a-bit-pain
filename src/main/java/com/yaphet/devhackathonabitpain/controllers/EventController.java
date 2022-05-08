@@ -47,7 +47,8 @@ public class EventController {
         return "event/event-create";
     }
     @PostMapping("/create")
-    public String createEvent(@Valid @ModelAttribute Event event, BindingResult result){
+    public String createEvent(@Valid @ModelAttribute Event event, BindingResult result,RedirectAttributes redirectAttributes){
+
         if(result.hasErrors()){
             return "redirect:event/create";
         }
