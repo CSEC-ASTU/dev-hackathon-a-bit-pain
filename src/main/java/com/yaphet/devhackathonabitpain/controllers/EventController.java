@@ -66,11 +66,12 @@ public class EventController {
         return "event/invite-members";
     }
     @PostMapping("/invite-members")
-    public String inviteMembers(@Valid @ModelAttribute Event event, BindingResult result, RedirectAttributes redirectAttributes){
+    public String inviteMembers(@ModelAttribute Event event, BindingResult result, RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
             return "redirect:/event/invite-members/{id}";
         }
-        eventService.update(event);
+        Event event1=eventService.getEvent(event.getId());
+        eventService.update(event1);
         redirectAttributes.addAttribute("id",event.getId());
         return "redirect:/event/detail/{id}";
     }

@@ -11,6 +11,7 @@
 <div class="container">
     <span class="text-info">Invite Members</span></br>
     <form action="#" th:action="@{/event/invite-members}" th:object="${event}" method="POST">
+        <input type="hidden" th:field="*{id}" th:value="${id}">
     <table class="table">
         <thead>
         <tr>
