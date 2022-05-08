@@ -4,7 +4,6 @@ import com.yaphet.devhackathonabitpain.models.AppUser;
 import com.yaphet.devhackathonabitpain.models.Event;
 import com.yaphet.devhackathonabitpain.services.AppUserService;
 import com.yaphet.devhackathonabitpain.services.EventService;
-import com.yaphet.devhackathonabitpain.utilities.enums.Gender;
 import com.yaphet.devhackathonabitpain.utilities.enums.Scope;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -49,10 +48,14 @@ public class EventController {
     @PostMapping("/create")
     public String createEvent(@Valid @ModelAttribute Event event, BindingResult result,RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
-            return "redirect:event/create";
+            return "redirect:event/createEvent";
         }
         eventService.create(event);
-        return "redirect:/event/invite-members";
+        redirectAttributes.addAttribute("id",event.getId());
+        if(event.getScope()==Scope.ALL){
+            return "redirect:/event";
+        }
+        return "redirect:/event/invite-members/{id}";
     }
     @GetMapping("/invite-members/{id}")
     public String inviteMembersForm(@PathVariable("id") Long id,Model model){
@@ -64,12 +67,26 @@ public class EventController {
     }
     @PostMapping("/invite-members")
     public String inviteMembers(@Valid @ModelAttribute Event event, BindingResult result, RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("id",event.getId());
         if(result.hasErrors()){
             return "redirect:/event/invite-members/{id}";
         }
         eventService.update(event);
+        redirectAttributes.addAttribute("id",event.getId());
         return "redirect:/event/detail/{id}";
+    }
+    @GetMapping("/update/{id}")
+    public String updateEvent(@PathVariable("id") Long id,Model model){
+        Event event=eventService.getEvent(id);
+        model.addAttribute("event",event);
+        return "event/edit-event";
+    }
+    @PostMapping("/update")
+    public String updateEvent(@Valid @ModelAttribute Event event, BindingResult result){
+        if(result.hasErrors()){
+            return "redirect:event/updateEvent";
+        }
+        eventService.update(event);
+        return "redirect:/event";
     }
     @GetMapping("/delete/{id}")
     public String deleteEvent(@PathVariable("id") Long id){

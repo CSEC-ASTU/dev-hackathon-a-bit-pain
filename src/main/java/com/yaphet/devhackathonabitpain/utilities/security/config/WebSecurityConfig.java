@@ -24,6 +24,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/account/pending")
+                .hasAnyRole("USER","INACTIVE_USER","ADMIN","SUPER_ADMIN","COMMITTEE")
+                .antMatchers("/user/","user/detail/**","/event/**","/post/**","/tag/**","/division/**")
+                .hasAnyRole("ADMIN","SUPER_ADMIN","COMMITTEE")
+                .antMatchers("/user/create/**","/user/update/**","/user/delete/**","club/**")
+                .hasAnyRole("ADMIN","SUPER_ADMIN")
                 .antMatchers("/register/**","/confirm/**","/login/**","/")
                 .permitAll()
                 .anyRequest()
