@@ -9,22 +9,22 @@
 <body>
 <div class="container">
     <a th:href="@{/event}" class="btn btn-info text-white">Event List</a>
-    <form action="#" th:action="@{/event/edit}" th:object="${event}" method="POST">
+    <form action="#" th:action="@{/event/update}" th:object="${event}" method="POST">
         <div class="mb-3">
             <label for="eventTitle" class="form-label">Event Title</label>
-            <input type="text" th:field="*{title}" class="form-control" id="eventTitle" >
+            <input type="text" th:field="*{title}" name="title" class="form-control" id="eventTitle" >
         </div>
         <div class="mb-3">
             <label for="eventDescription" class="form-label"> Event Description</label>
-            <input type="textarea" th:field="*{description}" class="form-control" id="eventDescription">
+            <input type="textarea" th:field="*{description}" name="description" class="form-control" id="eventDescription">
         </div>
         <div class="mb-3">
             <label for="eventLocation" class="form-label"> Event Location</label>
-            <input type="textarea" th:field="*{eventLocation}" class="form-control" id="eventLocation">
+            <input type="textarea" th:field="*{eventLocation}"  name="eventLocation" class="form-control" id="eventLocation">
         </div>
         <div class="mb-3">
             <label for="eventDate" class="form-label"> Event Date</label>
-            <input type="date" th:field="*{eventDate}" class="form-control" id="eventDate">
+            <input type="datetime-local" th:field="*{eventDate}" name="eventDate"class="form-control" id="eventDate">
         </div>
         <div class="mb-3" >
             <label class="form-label">Scope</label>
@@ -33,11 +33,11 @@
                 <input type="radio" th:field="*{scope}" name="scope" th:value="${scope}" id="scope">
             </div>
         </div>
-        <select class="form-select" aria-label="Default select example" id="appUserList"  th:field="*{attendees}" multiple="multiple">
+        <select class="form-select" aria-label="Default select example" id="appUserList"  th:field="*{attendees}" name="attendees" multiple="multiple">
             <option th:each="appUser:${appUserList}" th:value="${appUser.id}"
                     th:text="${appUser.firstName+' '+appUser.lastName}"></option>
         </select>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
 </body>
