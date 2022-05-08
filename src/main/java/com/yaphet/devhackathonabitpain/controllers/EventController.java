@@ -73,7 +73,7 @@ public class EventController {
         Event event1=eventService.getEvent(event.getId());
         eventService.update(event1);
         redirectAttributes.addAttribute("id",event.getId());
-        return "redirect:/event/detail/{id}";
+        return "redirect:/event}";
     }
     @GetMapping("/update/{id}")
     public String updateEvent(@PathVariable("id") Long id,Model model){
